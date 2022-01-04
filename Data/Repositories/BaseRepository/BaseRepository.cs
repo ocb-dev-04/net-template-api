@@ -1,6 +1,6 @@
 ﻿using Data.AppDbContext;
 
-namespace Data.Repositories.BaseRepository
+namespace Data.Repositories
 {
     /// <summary>
     /// <see cref="BaseRepository"/> intance

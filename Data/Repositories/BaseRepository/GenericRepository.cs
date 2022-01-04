@@ -2,10 +2,10 @@
 
 using Data.AppDbContext;
 
-using Core.Interfaces.Repositories.BaseRepositories;
+using Core.Interfaces;
 using Core.Entities;
 
-namespace Data.Repositories.BaseRepository
+namespace Data.Repositories
 {
     public sealed class GenericRepository<Entity> : BaseRepository, IGenericRepository<Entity> where Entity : BaseEntity
     {

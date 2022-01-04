@@ -1,6 +1,6 @@
 ﻿using Core.Entities;
 
-namespace Core.Interfaces.Repositories.BaseRepositories
+namespace Core.Interfaces
 {
     public interface IGenericRepository<Entity> where Entity : BaseEntity
     {

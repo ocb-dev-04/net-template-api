@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Repositories
+namespace Core.Services.UserServices
 {
-    public sealed class UserRepository : IUserRepository
+    public sealed class UserServices : IUserServices
     {
     }
 }

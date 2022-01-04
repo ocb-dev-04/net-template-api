@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Repositories.BaseRepository
+namespace Core.Interfaces
 {
-    internal class UnitOfWorkRepository
+    public interface IUserServices
     {
     }
 }

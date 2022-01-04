@@ -1,4 +1,8 @@
-﻿namespace API.Config
+﻿using Core.Interfaces;
+using Core.Services.UserServices;
+using Data.Repositories;
+
+namespace API.Config
 {
     public static class ServicesExtensions
     {
@@ -8,7 +12,7 @@
         /// <param name="services"></param>
         public static void AddServicesScopes(this IServiceCollection services)
         {
-
+            services.AddScoped<IUserServices, UserServices>();
         }
 
         /// <summary>
@@ -17,7 +21,8 @@
         /// <param name="services"></param>
         public static void AddRepositoriesScopes(this IServiceCollection services)
         {
-
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
         /// <summary>
@@ -26,7 +31,7 @@
         /// <param name="services"></param>
         public static void AddTrasients(this IServiceCollection services)
         {
-
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
         /// <summary>
