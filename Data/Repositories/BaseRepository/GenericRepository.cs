@@ -8,10 +8,10 @@ using Core.DTOs;
 
 namespace Data.Repositories
 {
-    public sealed class GenericRepository<Entity, Mapper> 
-        : BaseRepository, IGenericRepository<Entity, Mapper> 
+    public sealed class GenericRepository<Entity, DTO> 
+        : BaseRepository, IGenericRepository<Entity, DTO> 
             where Entity : BaseEntity 
-            where Mapper : BaseDTO
+            where DTO : BaseDTO
     {
         #region Properties
 

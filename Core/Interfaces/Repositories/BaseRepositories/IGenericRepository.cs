@@ -3,9 +3,9 @@ using Core.Entities;
 
 namespace Core.Interfaces
 {
-    public interface IGenericRepository<Entity, Mapper>
+    public interface IGenericRepository<Entity, DTO>
         where Entity : BaseEntity
-        where Mapper : BaseDTO
+        where DTO : BaseDTO
     {
         /// <summary>
         /// Add an entity
