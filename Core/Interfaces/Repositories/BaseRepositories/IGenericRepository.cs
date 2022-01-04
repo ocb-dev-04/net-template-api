@@ -28,7 +28,7 @@ namespace Core.Interfaces.Repositories.BaseRepositories
         /// </summary>
         /// <param name="entity">Entity model</param>
         /// <returns></returns>
-        Task<Entity> Create(Entity entity);
+        Task Create(Entity entity);
 
         /// <summary>
         /// Update entity
@@ -36,13 +36,13 @@ namespace Core.Interfaces.Repositories.BaseRepositories
         /// <param name="id">Current entity guid</param>
         /// <param name="entity">Enitty with changes</param>
         /// <returns></returns>
-        Task<Entity> Update(Guid id, Entity entity);
+        Task Update(Guid id, Entity entity);
 
         /// <summary>
         /// Delete entity by guid
         /// </summary>
         /// <param name="id">Entity guid</param>
         /// <returns></returns>
-        Task<bool> Delete(Guid id);
+        Task Delete(Guid id);
     }
 }

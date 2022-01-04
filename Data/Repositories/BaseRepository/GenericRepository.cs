@@ -1,12 +1,9 @@
-﻿using Core.Entities;
-using Core.Interfaces.Repositories.BaseRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+
 using Data.AppDbContext;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Core.Interfaces.Repositories.BaseRepositories;
+using Core.Entities;
 
 namespace Data.Repositories.BaseRepository
 {
@@ -65,13 +62,21 @@ namespace Data.Repositories.BaseRepository
         /// <inheritdoc/>
         public async Task Update(Guid id, Entity entity)
         {
-            Entity finded = await _table.FindAsync(id);
+            Entity? finded = await _table.FindAsync(id);
+            if(finded == null) throw new ArgumentNullException(nameof(finded));
+
+            _context.Entry(finded).CurrentValues.SetValues(entity);
+            // save changes is invoque in unit of work
         }
 
         /// <inheritdoc/>
-        public Task<bool> Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            Entity? finded = await _table.FindAsync(id);
+            if (finded == null) throw new ArgumentNullException(nameof(finded));
+
+            _table.Remove(finded);
+            // save changes is invoque in unit of work
         }
 
         #endregion
