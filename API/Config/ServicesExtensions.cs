@@ -1,7 +1,10 @@
 ﻿using Core.Commands;
 using Core.Interfaces;
 using Core.Queries;
+using Data.AppDbContext;
 using Data.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace API.Config
 {
@@ -43,7 +46,12 @@ namespace API.Config
         /// <param name="configuration"></param>
         public static void AddDatabaseServices(this IServiceCollection services, IConfiguration configuration)
         {
-
+            services.AddDbContext<ApplicationDbContext>(
+                o =>
+                {
+                    o.UseInMemoryDatabase(nameof(ApplicationDbContext))
+                        .LogTo((msg) => Debug.WriteLine(msg));
+                });
         }
 
         /// <summary>
@@ -63,7 +71,7 @@ namespace API.Config
         /// <param name="configuration"></param>
         public static void AddAutomapperServices(this IServiceCollection services)
         {
-
+            services.AddAutoMapper(mapper => mapper.AddMaps(nameof(Core)));
         }
     }
 }

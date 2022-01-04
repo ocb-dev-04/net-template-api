@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Mappers.UserMappers
+namespace Core.Mappers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class UserMappers
     {
     }

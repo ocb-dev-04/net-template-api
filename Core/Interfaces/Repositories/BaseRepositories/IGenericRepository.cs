@@ -3,6 +3,11 @@ using Core.Entities;
 
 namespace Core.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="Entity"></typeparam>
+    /// <typeparam name="DTO"></typeparam>
     public interface IGenericRepository<Entity, DTO>
         where Entity : BaseEntity
         where DTO : BaseDTO

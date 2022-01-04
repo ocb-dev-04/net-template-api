@@ -3,6 +3,9 @@ using Core.Entities;
 
 namespace Core.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IUnitOfWork : IDisposable
     {
         #region Read actions repositories

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Core.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IUserCommands
     {
     }

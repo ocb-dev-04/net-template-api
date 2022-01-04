@@ -1,10 +1,4 @@
 ﻿using AutoMapper;
-using Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Helpers
 {
@@ -12,18 +6,14 @@ namespace Core.Helpers
     {
         #region Properties
 
-        protected readonly IUnitOfWork _unitOfWork;
         protected readonly IMapper _mapper;
 
         #endregion
 
         #region Ctor
 
-        public UnitOfWorkBaseRepository(
-            IUnitOfWork unitOfWork,
-            IMapper mapper)
+        public UnitOfWorkBaseRepository(IMapper mapper)
         {
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
