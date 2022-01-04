@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Interfaces;
 
 namespace Core.Helpers
 {
@@ -6,14 +7,16 @@ namespace Core.Helpers
     {
         #region Properties
 
+        protected readonly IUnitOfWork _unitOfWork;
         protected readonly IMapper _mapper;
 
         #endregion
 
         #region Ctor
 
-        public UnitOfWorkBaseRepository(IMapper mapper)
+        public UnitOfWorkBaseRepository(IUnitOfWork unitOfWork, IMapper mapper)
         {
+            _unitOfWork = unitOfWork;   
             _mapper = mapper;
         }
 
