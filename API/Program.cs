@@ -9,7 +9,7 @@ builder.Services.AddSwaggerGen();
 
 IConfiguration Configuration = builder.Configuration;
 
-builder.Services.AddServicesScopes();
+builder.Services.AddReadWriteScopes();
 builder.Services.AddRepositoriesScopes();
 builder.Services.AddTrasients();
 builder.Services.AddDatabaseServices(Configuration);

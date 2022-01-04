@@ -1,5 +1,4 @@
 ﻿using Core.Interfaces;
-using Core.Services.UserServices;
 using Data.Repositories;
 
 namespace API.Config
@@ -10,9 +9,12 @@ namespace API.Config
         /// Method to inyect dependencies that will use in services methods
         /// </summary>
         /// <param name="services"></param>
-        public static void AddServicesScopes(this IServiceCollection services)
+        public static void AddReadWriteScopes(this IServiceCollection services)
         {
-            services.AddScoped<IUserServices, UserServices>();
+            services.AddScoped<IUserQueries, IUserQueries>();
+            services.AddScoped<IUserCommands, IUserCommands>();
+
+
         }
 
         /// <summary>
@@ -22,7 +24,7 @@ namespace API.Config
         public static void AddRepositoriesScopes(this IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
         }
 
         /// <summary>

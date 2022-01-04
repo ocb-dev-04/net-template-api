@@ -1,33 +1,43 @@
-﻿using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.DTOs;
+using Core.Entities;
 
 namespace Core.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        /// <summary>
-        /// Get to User Generic Repository
-        /// </summary>
-        public IGenericRepository<User> UserGenRepository { get; }
+        #region Read actions repositories
 
         /// <summary>
-        /// Get to DeviceToken Generic Repository
+        /// User Queries Repository. Read actions.
         /// </summary>
-        public IGenericRepository<DeviceToken> DeviceTokenGenRepository { get; }
+        public IUserRepository UserQueriesRepository { get; }
+
+        #endregion
+
+        #region Write actions repositories
 
         /// <summary>
-        /// Get to UserPhone Generic Repository
+        /// User Command Repository. Write actions.
         /// </summary>
-        public IGenericRepository<UserPhone> UserPhoneGenRepository { get; }
+        public IGenericRepository<User, UserDTO> UserCommandRepository { get; }
+
 
         /// <summary>
-        /// Get to UserScore Generic Repository
+        /// DeviceToken Command Repository. Write actions.
         /// </summary>
-        public IGenericRepository<UserScore> UserScoreGenRepository { get; }
+        public IGenericRepository<DeviceToken, DeviceTokenDTO> DeviceTokenCommandRepository { get; }
+
+        /// <summary>
+        ///  UserPhone Command Repository. Write actions.
+        /// </summary>
+        public IGenericRepository<UserPhone, UserPhoneDTO> UserPhoneCommandRepository { get; }
+
+        /// <summary>
+        /// UserPhone Command Repository. Write actions.
+        /// </summary>
+        public IGenericRepository<UserScore, UserScoreDTO> UserScoreCommandRepository { get; }
+
+        #endregion
 
         /// <summary>
         /// Save all changes tracking

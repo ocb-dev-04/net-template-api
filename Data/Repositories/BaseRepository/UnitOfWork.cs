@@ -2,6 +2,7 @@
 
 using Core.Interfaces;
 using Core.Entities;
+using Core.DTOs;
 
 namespace Data.Repositories
 {
@@ -9,10 +10,20 @@ namespace Data.Repositories
     {
         #region Properties
 
-        private readonly IGenericRepository<User> _userGenRepository;
-        private readonly IGenericRepository<DeviceToken> _deviceTokenGenRepository;
-        private readonly IGenericRepository<UserPhone> _userPhoneGenRepository;
-        private readonly IGenericRepository<UserScore> _userScoreGenRepository;
+        #region Read actions props
+
+        private readonly IUserRepository _userQueriesRepository;
+
+        #endregion
+
+        #region Write actions props
+
+        private readonly IGenericRepository<User, UserDTO> _userCommandRepository;
+        private readonly IGenericRepository<DeviceToken, DeviceTokenDTO> _deviceTokenCommandRepository;
+        private readonly IGenericRepository<UserPhone, UserPhoneDTO> _userPhoneCommandRepository;
+        private readonly IGenericRepository<UserScore, UserScoreDTO> _userScoreCommandRepository;
+
+        #endregion
         
         #endregion
 
@@ -31,21 +42,33 @@ namespace Data.Repositories
 
         #region Repositories methods
 
-        /// <inheritdoc/>
-        public IGenericRepository<User> UserGenRepository 
-            => _userGenRepository ?? new GenericRepository<User>(_context);
+        #region Read actions respositories
 
         /// <inheritdoc/>
-        public IGenericRepository<DeviceToken> DeviceTokenGenRepository 
-            => _deviceTokenGenRepository ?? new GenericRepository<DeviceToken>(_context);
+        public IUserRepository UserQueriesRepository
+            => _userQueriesRepository ?? new UserRepository(_context);
+
+        #endregion
+
+        #region Write actions repositories
 
         /// <inheritdoc/>
-        public IGenericRepository<UserPhone> UserPhoneGenRepository 
-            => _userPhoneGenRepository ?? new GenericRepository<UserPhone>(_context);
+        public IGenericRepository<User, UserDTO> UserCommandRepository
+            => _userCommandRepository ?? new GenericRepository<User, UserDTO>(_context);
 
         /// <inheritdoc/>
-        public IGenericRepository<UserScore> UserScoreGenRepository 
-            => _userScoreGenRepository ?? new GenericRepository<UserScore>(_context);
+        public IGenericRepository<DeviceToken, DeviceTokenDTO> DeviceTokenCommandRepository
+            => _deviceTokenCommandRepository ?? new GenericRepository<DeviceToken, DeviceTokenDTO>(_context);
+
+        /// <inheritdoc/>
+        public IGenericRepository<UserPhone, UserPhoneDTO> UserPhoneCommandRepository
+            => _userPhoneCommandRepository ?? new GenericRepository<UserPhone, UserPhoneDTO>(_context);
+
+        /// <inheritdoc/>
+        public IGenericRepository<UserScore, UserScoreDTO> UserScoreCommandRepository
+            => _userScoreCommandRepository ?? new GenericRepository<UserScore, UserScoreDTO>(_context);
+
+        #endregion
 
         #endregion
 

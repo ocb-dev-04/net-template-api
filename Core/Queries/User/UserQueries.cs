@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Services.UserServices
+namespace Core.Queries.User
 {
-    public sealed class UserServices : IUserServices
+    public sealed class UserQueries : IUserQueries
     {
     }
 }

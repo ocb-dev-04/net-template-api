@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Interfaces
 {
-    public interface IUserServices
+    public interface IUserCommands
     {
     }
 }

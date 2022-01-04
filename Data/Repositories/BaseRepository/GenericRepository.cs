@@ -4,10 +4,14 @@ using Data.AppDbContext;
 
 using Core.Interfaces;
 using Core.Entities;
+using Core.DTOs;
 
 namespace Data.Repositories
 {
-    public sealed class GenericRepository<Entity> : BaseRepository, IGenericRepository<Entity> where Entity : BaseEntity
+    public sealed class GenericRepository<Entity, Mapper> 
+        : BaseRepository, IGenericRepository<Entity, Mapper> 
+            where Entity : BaseEntity 
+            where Mapper : BaseDTO
     {
         #region Properties
 
@@ -21,32 +25,6 @@ namespace Data.Repositories
         {
             _table = context.Set<Entity>();
         }
-
-        #endregion
-
-        #region Get Collections
-
-        /// <inheritdoc/>
-        public async Task<HashSet<Entity>> GetAll()
-        {
-            IEnumerable<Entity> list =  await _table.ToListAsync();
-            return list.ToHashSet<Entity>();
-        }
-
-        /// <inheritdoc/>
-        public async Task<HashSet<Entity>> GetAllDeletes()
-        {
-            IEnumerable<Entity> list = await _table.IgnoreQueryFilters().Where(w => w.Deleted).ToListAsync();
-            return list.ToHashSet<Entity>();
-        }
-
-        #endregion
-
-        #region Get Single
-
-        /// <inheritdoc/>
-        public async Task<Entity?> GetById(Guid id)
-            => await _table.FindAsync(id);
 
         #endregion
 
