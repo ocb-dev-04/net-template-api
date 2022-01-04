@@ -1,8 +1,8 @@
-﻿using Data.AppDbContext;
-
-using Core.Interfaces;
+﻿using Core.Interfaces;
 using Core.Entities;
 using Core.DTOs;
+
+using Data.AppDbContext;
 
 namespace Data.Repositories
 {

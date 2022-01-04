@@ -1,13 +1,18 @@
-﻿using Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Core.Helpers;
+using Core.Interfaces;
 
-namespace Core.Queries.User
+namespace Core.Queries
 {
-    public sealed class UserQueries : IUserQueries
+    public sealed class UserQueries : UnitOfWorkBaseRepository, IUserQueries
     {
+        #region Ctor
+
+        public UserQueries(IUnitOfWork unitOfWork, IMapper mapper):base(unitOfWork, mapper)
+        {
+
+        }
+
+        #endregion
     }
 }

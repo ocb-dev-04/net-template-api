@@ -1,4 +1,6 @@
-﻿using Core.Interfaces;
+﻿using Core.Commands;
+using Core.Interfaces;
+using Core.Queries;
 using Data.Repositories;
 
 namespace API.Config
@@ -11,10 +13,8 @@ namespace API.Config
         /// <param name="services"></param>
         public static void AddReadWriteScopes(this IServiceCollection services)
         {
-            services.AddScoped<IUserQueries, IUserQueries>();
-            services.AddScoped<IUserCommands, IUserCommands>();
-
-
+            services.AddScoped<IUserQueries, UserQueries>();
+            services.AddScoped<IUserCommands, UserCommands>();
         }
 
         /// <summary>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Commands.User
+namespace Core.Commands
 {
     public sealed class UserCommands : IUserCommands
     {

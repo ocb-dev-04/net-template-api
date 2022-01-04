@@ -9,12 +9,14 @@ builder.Services.AddSwaggerGen();
 
 IConfiguration Configuration = builder.Configuration;
 
-builder.Services.AddReadWriteScopes();
+builder.Services.AddDatabaseServices(Configuration);
+builder.Services.AddAutomapperServices();
+
 builder.Services.AddRepositoriesScopes();
 builder.Services.AddTrasients();
-builder.Services.AddDatabaseServices(Configuration);
+builder.Services.AddReadWriteScopes();
+
 builder.Services.AddJWTServices(Configuration);
-builder.Services.AddAutomapperServices();
 
 var app = builder.Build();
 
