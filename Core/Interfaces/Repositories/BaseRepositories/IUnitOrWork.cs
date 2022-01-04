@@ -38,11 +38,5 @@ namespace Core.Interfaces
         public IGenericRepository<UserScore, UserScoreDTO> UserScoreCommandRepository { get; }
 
         #endregion
-
-        /// <summary>
-        /// Save all changes tracking
-        /// </summary>
-        /// <returns></returns>
-        Task<bool> Commit();
     }
 }

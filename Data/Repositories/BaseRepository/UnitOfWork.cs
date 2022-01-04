@@ -40,8 +40,6 @@ namespace Data.Repositories
 
         #endregion
 
-        #region Repositories methods
-
         #region Read actions respositories
 
         /// <inheritdoc/>
@@ -70,8 +68,6 @@ namespace Data.Repositories
 
         #endregion
 
-        #endregion
-
         #region Interfaces methods inselft
 
         /// <inheritdoc/>
@@ -79,15 +75,6 @@ namespace Data.Repositories
         {
             int changes = await _context.SaveChangesAsync();
             return changes > 0;
-        }
-
-        /// <inheritdoc/>
-        public void Dispose()
-        {
-            if (_context != null)
-            {
-                _context.Dispose();
-            }
         }
 
         #endregion
