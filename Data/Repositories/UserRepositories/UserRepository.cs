@@ -1,10 +1,7 @@
-﻿using Core.Interfaces;
+﻿using AutoMapper;
+
 using Data.AppDbContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Interfaces;
 
 namespace Data.Repositories
 {
@@ -12,7 +9,7 @@ namespace Data.Repositories
     {
         #region Ctor
 
-        public UserRepository(ApplicationDbContext context):base(context)
+        public UserRepository(ApplicationDbContext context, IMapper mapper):base(context, mapper)
         {
 
         }

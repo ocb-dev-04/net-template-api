@@ -1,8 +1,9 @@
-﻿using Core.Interfaces;
-using Core.Entities;
-using Core.DTOs;
+﻿using AutoMapper;
 
 using Data.AppDbContext;
+using Core.Interfaces;
+using Core.Entities;
+using Core.DTOs;
 
 namespace Data.Repositories
 {
@@ -33,7 +34,7 @@ namespace Data.Repositories
         /// <see cref="UnitOfWork"/> contructor
         /// </summary>
         /// <param name="context"><see cref="ApplicationDbContext"/> injection</param>
-        public UnitOfWork(ApplicationDbContext context) : base(context)
+        public UnitOfWork(ApplicationDbContext context, IMapper mapper) : base(context, mapper)
         {
 
         }
@@ -44,7 +45,7 @@ namespace Data.Repositories
 
         /// <inheritdoc/>
         public IUserRepository UserQueriesRepository
-            => _userQueriesRepository ?? new UserRepository(_context);
+            => _userQueriesRepository ?? new UserRepository(_context, _mapper);
 
         #endregion
 
@@ -52,19 +53,19 @@ namespace Data.Repositories
 
         /// <inheritdoc/>
         public IGenericRepository<User, UserDTO> UserCommandRepository
-            => _userCommandRepository ?? new GenericRepository<User, UserDTO>(_context);
+            => _userCommandRepository ?? new GenericRepository<User, UserDTO>(_context, _mapper);
 
         /// <inheritdoc/>
         public IGenericRepository<DeviceToken, DeviceTokenDTO> DeviceTokenCommandRepository
-            => _deviceTokenCommandRepository ?? new GenericRepository<DeviceToken, DeviceTokenDTO>(_context);
+            => _deviceTokenCommandRepository ?? new GenericRepository<DeviceToken, DeviceTokenDTO>(_context, _mapper);
 
         /// <inheritdoc/>
         public IGenericRepository<UserPhone, UserPhoneDTO> UserPhoneCommandRepository
-            => _userPhoneCommandRepository ?? new GenericRepository<UserPhone, UserPhoneDTO>(_context);
+            => _userPhoneCommandRepository ?? new GenericRepository<UserPhone, UserPhoneDTO>(_context, _mapper);
 
         /// <inheritdoc/>
         public IGenericRepository<UserScore, UserScoreDTO> UserScoreCommandRepository
-            => _userScoreCommandRepository ?? new GenericRepository<UserScore, UserScoreDTO>(_context);
+            => _userScoreCommandRepository ?? new GenericRepository<UserScore, UserScoreDTO>(_context, _mapper);
 
         #endregion
 

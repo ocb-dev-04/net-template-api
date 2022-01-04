@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using Data.AppDbContext;
+using AutoMapper;
 
+using Data.AppDbContext;
 using Core.Interfaces;
 using Core.Entities;
 using Core.DTOs;
@@ -21,7 +22,7 @@ namespace Data.Repositories
         
         #region Ctor
 
-        public GenericRepository(ApplicationDbContext context):base(context)
+        public GenericRepository(ApplicationDbContext context, IMapper mapper):base(context, mapper)
         {
             _table = context.Set<Entity>();
         }
@@ -31,19 +32,22 @@ namespace Data.Repositories
         #region Write Actions
 
         /// <inheritdoc/>
-        public async Task Create(Entity entity)
+        public async Task Create(DTO create)
         {
-            await _table.AddAsync(entity);
+            Entity mapped = _mapper.Map<Entity>(create);
+            await _table.AddAsync(mapped);
             // save changes is invoque in unit of work
         }
 
         /// <inheritdoc/>
-        public async Task Update(Guid id, Entity entity)
+        public async Task Update(Guid id, DTO update)
         {
             Entity? finded = await _table.FindAsync(id);
             if(finded == null) throw new ArgumentNullException(nameof(finded));
 
-            _context.Entry(finded).CurrentValues.SetValues(entity);
+            finded = _mapper.Map<Entity>(update);
+
+            _context.Entry(finded).CurrentValues.SetValues(update);
             // save changes is invoque in unit of work
         }
 

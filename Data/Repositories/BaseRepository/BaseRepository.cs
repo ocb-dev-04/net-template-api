@@ -1,4 +1,5 @@
-﻿using Data.AppDbContext;
+﻿using AutoMapper;
+using Data.AppDbContext;
 
 namespace Data.Repositories
 {
@@ -10,6 +11,7 @@ namespace Data.Repositories
         #region Properties
 
         protected readonly ApplicationDbContext _context;
+        protected readonly IMapper _mapper;
 
         #endregion
 
@@ -19,9 +21,10 @@ namespace Data.Repositories
         /// <see cref="BaseRepository"/> constructor
         /// </summary>
         /// <param name="context"></param>
-        public BaseRepository(ApplicationDbContext context)
+        public BaseRepository(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         #endregion

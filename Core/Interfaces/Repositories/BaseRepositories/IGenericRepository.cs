@@ -15,22 +15,22 @@ namespace Core.Interfaces
         /// <summary>
         /// Add an entity
         /// </summary>
-        /// <param name="entity">Entity model</param>
+        /// <param name="create">DTO ready to map to entity</param>
         /// <returns></returns>
-        Task Create(Entity entity);
+        Task Create(DTO create);
 
         /// <summary>
         /// Update entity
         /// </summary>
         /// <param name="id">Current entity guid</param>
-        /// <param name="entity">Enitty with changes</param>
+        /// <param name="update">DTO with changes ready to map to entity</param>
         /// <returns></returns>
-        Task Update(Guid id, Entity entity);
+        Task Update(Guid id, DTO update);
 
         /// <summary>
         /// Delete entity by guid
         /// </summary>
-        /// <param name="id">Entity guid</param>
+        /// <param name="id">Entity guid to delete</param>
         /// <returns></returns>
         Task Delete(Guid id);
     }
