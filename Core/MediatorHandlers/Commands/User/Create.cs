@@ -1,16 +1,18 @@
 ﻿using AutoMapper;
-using Core.Builders;
+using MediatR;
+
 using Core.DTOs;
 using Core.Helpers;
 using Core.Interfaces;
-using MediatR;
+using Core.Builders;
+using Core.Entities;
 
-namespace Core.Commands
+namespace Core.MediatorHandlers.Commands
 {
-    public static class ReactivateUser
+    public class CreateUser
     {
         // Command
-        public record Command(Guid id) : IRequest<bool>;
+        public record Command(CreateUserDTO model) : IRequest<bool>;
 
         // Handler
         public class Handler : UnitOfWorkBaseRepository, IRequestHandler<Command, bool>
@@ -22,11 +24,13 @@ namespace Core.Commands
 
             public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
             {
-                FullUserDTO find = await _unitOfWork.UserQueriesRepository.GetById(request.id);
-                Entities.User savedData = _mapper.Map<Entities.User>(find);
-                Entities.User update = new UserStatusBuilder(savedData).Reactivate();
-
-                await _unitOfWork.UserCommandRepository.Update(update);
+                User create = new CreateBuilder()
+                    .SetName(request.model.Name)
+                    .SetLastName(request.model.LastName)
+                    .SetEmail(request.model.Email)
+                    .Build();
+                
+                await _unitOfWork.UserCommandRepository.Create(create);
                 return await _unitOfWork.Commit();
             }
         }

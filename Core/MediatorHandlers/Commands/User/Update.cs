@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Commands
+namespace Core.MediatorHandlers.Commands
 {
     public class UpdateUser
     {

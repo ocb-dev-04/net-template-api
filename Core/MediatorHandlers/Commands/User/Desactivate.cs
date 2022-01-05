@@ -7,7 +7,7 @@ using Core.Helpers;
 using Core.Interfaces;
 using Core.Entities;
 
-namespace Core.Commands
+namespace Core.MediatorHandlers.Commands
 {
     public static class DesactivateUser
     {

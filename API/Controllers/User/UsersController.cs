@@ -1,4 +1,4 @@
-﻿using Core.Commands;
+﻿using Core.MediatorHandlers.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

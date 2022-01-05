@@ -5,7 +5,7 @@ using Core.DTOs;
 using Core.Helpers;
 using Core.Interfaces;
 
-namespace Core.Commands
+namespace Core.MediatorHandlers.Commands
 {
     public static class DeleteUser
     {

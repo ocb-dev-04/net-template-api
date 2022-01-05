@@ -6,7 +6,7 @@ using Core.Helpers;
 using Core.Interfaces;
 using Core.Builders;
 
-namespace Core.Commands
+namespace Core.MediatorHandlers.Commands
 {
     public static class PauseUser
     {
