@@ -3,7 +3,6 @@
 using Data.AppDbContext;
 using Core.Interfaces;
 using Core.Entities;
-using Core.DTOs;
 
 namespace Data.Repositories
 {
@@ -20,9 +19,6 @@ namespace Data.Repositories
         #region Write actions props
 
         private readonly IGenericRepository<User> _userCommandRepository;
-        private readonly IGenericRepository<DeviceToken> _deviceTokenCommandRepository;
-        private readonly IGenericRepository<UserPhone> _userPhoneCommandRepository;
-        private readonly IGenericRepository<UserScore> _userScoreCommandRepository;
 
         #endregion
         
@@ -54,18 +50,6 @@ namespace Data.Repositories
         /// <inheritdoc/>
         public IGenericRepository<User> UserCommandRepository
             => _userCommandRepository ?? new GenericRepository<User>(_context, _mapper);
-
-        /// <inheritdoc/>
-        public IGenericRepository<DeviceToken> DeviceTokenCommandRepository
-            => _deviceTokenCommandRepository ?? new GenericRepository<DeviceToken>(_context, _mapper);
-
-        /// <inheritdoc/>
-        public IGenericRepository<UserPhone> UserPhoneCommandRepository
-            => _userPhoneCommandRepository ?? new GenericRepository<UserPhone>(_context, _mapper);
-
-        /// <inheritdoc/>
-        public IGenericRepository<UserScore> UserScoreCommandRepository
-            => _userScoreCommandRepository ?? new GenericRepository<UserScore>(_context, _mapper);
 
         #endregion
 

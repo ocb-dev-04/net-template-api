@@ -25,20 +25,6 @@ namespace Data.AppDbContext
         /// </summary>
         public DbSet<User> User { get; set; }
 
-        /// <summary>
-        /// Database entity to DeviceToken table
-        /// </summary>
-        public DbSet<DeviceToken> DeviceToken { get; set; }
-
-        /// <summary>
-        /// Database entity to UserPhone table
-        /// </summary>
-        public DbSet<UserPhone> UserPhone { get; set; }
-
-        /// <summary>
-        /// Database entity to UserScore table
-        /// </summary>
-        public DbSet<UserScore> UserScore { get; set; }
 
         #endregion
 
@@ -48,9 +34,6 @@ namespace Data.AppDbContext
         {
             // if some time need ignore this filter just add this: .IgnoreQueryFilters() to linq query
             modelBuilder.Entity<User>().HasQueryFilter(f => !f.Deleted);
-            modelBuilder.Entity<DeviceToken>().HasQueryFilter(f => !f.Deleted);
-            modelBuilder.Entity<UserPhone>().HasQueryFilter(f => !f.Deleted);
-            modelBuilder.Entity<UserScore>().HasQueryFilter(f => !f.Deleted);
         }
 
         #endregion

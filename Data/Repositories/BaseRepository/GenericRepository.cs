@@ -38,9 +38,7 @@ namespace Data.Repositories
         /// <inheritdoc/>
         public async Task Create(Entity create)
         {
-            Entity mapped = _mapper.Map<Entity>(create);
-            await _table.AddAsync(mapped);
-            // save changes is invoque in unit of work
+            await _table.AddAsync(create);
         }
 
         /// <inheritdoc/>
@@ -49,20 +47,16 @@ namespace Data.Repositories
             Entity finded = await _table.FindAsync(update.Id);
             if (finded == null) throw new ArgumentNullException(nameof(finded));
 
-            finded = _mapper.Map<Entity>(update);
-
             _context.Entry(finded).CurrentValues.SetValues(update);
-            // save changes is invoque in unit of work
         }
 
         /// <inheritdoc/>
         public async Task Delete(Guid id)
         {
-            Entity? finded = await _table.FindAsync(id);
+            Entity finded = await _table.FindAsync(id);
             if (finded == null) throw new ArgumentNullException(nameof(finded));
 
             _table.Remove(finded);
-            // save changes is invoque in unit of work
         }
 
         #endregion

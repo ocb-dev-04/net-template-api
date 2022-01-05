@@ -15,7 +15,7 @@ namespace Core.Interfaces
         /// </summary>
         /// <param name="email">The user email to search</param>
         /// <returns></returns>
-        Task<FlatUserDTO> GetByEmail(string email);
+        Task<FullUserDTO> GetByEmail(string email);
 
         /// <summary>
         /// Get user by id

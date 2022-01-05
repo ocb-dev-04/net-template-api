@@ -7,28 +7,17 @@ namespace Core.DTOs
         /// <summary>
         /// User name
         /// </summary>
-        public string FullName { get; set; }
+        public string Name { get; set; }
+
+        /// <summary>
+        /// User lastname
+        /// </summary>
+        public string LastName { get; set; }
 
         /// <summary>
         /// User email
         /// </summary>
         public string Email { get; set; }
-
-        // TODO: need to create dtos to this
-        ///// <summary>
-        ///// Phones numbers of user
-        ///// </summary>
-        //public virtual HashSet<UserPhone> PhoneNumbers { get; set; } = new HashSet<UserPhone>();
-
-        ///// <summary>
-        ///// Devices token of user
-        ///// </summary>
-        //public virtual HashSet<DeviceToken> DeviceTokens { get; set; } = new HashSet<DeviceToken>();
-
-        ///// <summary>
-        ///// Qualifications to user
-        ///// </summary>
-        //public virtual HashSet<UserScore> UserScores { get; set; } = new HashSet<UserScore>();
 
         /// <summary>
         /// User status

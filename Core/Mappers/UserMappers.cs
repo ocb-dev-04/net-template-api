@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+
 using Core.DTOs;
 using Core.Entities;
 
@@ -12,7 +13,7 @@ namespace Core.Mappers
         public UserMappers()
         {
             CreateMap<User, FlatUserDTO>(); // to collections result
-            CreateMap<User, FullUserDTO>(); // to single result
+            CreateMap<User, FullUserDTO>().ReverseMap(); ; // to single result
         }
     }
 }

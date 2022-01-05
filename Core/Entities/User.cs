@@ -34,21 +34,6 @@ namespace Core.Entities
         public string Email { get; set; }
 
         /// <summary>
-        /// Phones numbers of user
-        /// </summary>
-        public virtual HashSet<UserPhone> PhoneNumbers { get; set; } = new HashSet<UserPhone>();
-
-        /// <summary>
-        /// Devices token of user
-        /// </summary>
-        public virtual HashSet<DeviceToken> DeviceTokens { get; set; } = new HashSet<DeviceToken>();
-
-        /// <summary>
-        /// Qualifications to user
-        /// </summary>
-        public virtual HashSet<UserScore> UserScores { get; set; } = new HashSet<UserScore>();
-
-        /// <summary>
         /// User status, Active by default
         /// </summary>
         public UserStatus UserStatus { get; set; } = UserStatus.Active;

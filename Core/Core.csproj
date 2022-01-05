@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="MediatorHandlers\Queries\User\" />
     <Folder Include="Validations\Entities\" />
   </ItemGroup>
 

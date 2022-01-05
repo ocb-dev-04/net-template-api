@@ -1,5 +1,4 @@
-﻿using Core.DTOs;
-using Core.Entities;
+﻿using Core.Entities;
 
 namespace Core.Interfaces
 {
@@ -23,22 +22,6 @@ namespace Core.Interfaces
         /// User Command Repository. Write actions.
         /// </summary>
         public IGenericRepository<User> UserCommandRepository { get; }
-
-
-        /// <summary>
-        /// DeviceToken Command Repository. Write actions.
-        /// </summary>
-        public IGenericRepository<DeviceToken> DeviceTokenCommandRepository { get; }
-
-        /// <summary>
-        ///  UserPhone Command Repository. Write actions.
-        /// </summary>
-        public IGenericRepository<UserPhone> UserPhoneCommandRepository { get; }
-
-        /// <summary>
-        /// UserPhone Command Repository. Write actions.
-        /// </summary>
-        public IGenericRepository<UserScore> UserScoreCommandRepository { get; }
 
         #endregion
 

@@ -1,6 +1,4 @@
-﻿using Ardalis.GuardClauses;
-
-using Core.Entities;
+﻿using Core.Entities;
 
 namespace Core.Builders
 {
@@ -15,28 +13,35 @@ namespace Core.Builders
         }
 
         public UpdateBuilder SetName(string name)
-        {   
-            UserData.Name = name;
+        {
+            if (!string.IsNullOrEmpty(name))
+            {
+                UserData.Name = name;
+            }
             return this;
         }
-         
+
         public UpdateBuilder SetLastName(string lastname)
         {
-            Guard.Against.NullOrWhiteSpace(lastname, "{0} cant be null or white space", nameof(lastname));
-            UserData.LastName = lastname;
+            if (!string.IsNullOrEmpty(lastname))
+            {
+                UserData.LastName = lastname;
+            }
             return this;
         }
 
         public UpdateBuilder SetEmail(string email)
         {
-            Guard.Against.NullOrWhiteSpace(email, "{0} cant be null or white space", nameof(email));
-            UserData.Email = email;
+            if (!string.IsNullOrEmpty(email))
+            {
+                UserData.Email = email;
+            }
             return this;
         }
 
         public User Build()
         {
-            // make foreign validations => initalDate > endDate for example
+            // make foreign validations => like: initalDate > endDate
             UserData.ModifiedDate = DateTime.UtcNow;
             return UserData;
         }

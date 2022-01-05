@@ -7,6 +7,7 @@ using Data.AppDbContext;
 using Core.Interfaces;
 using Core.DTOs;
 using Core.Validations.QueryParams;
+using Core.Entities;
 
 namespace Data.Repositories
 {
@@ -24,29 +25,19 @@ namespace Data.Repositories
         #region Single
 
         /// <inheritdoc/>
-        public async Task<FlatUserDTO> GetByEmail(string email)
-            =>  await _context.User.Select(s => 
-                                new FlatUserDTO()
-                                {
-                                    Id = s.Id,
-                                    FullName = string.Format("{0} {1}", s.Name, s.LastName),
-                                    Email = s.Email,
-                                    Status = s.UserStatus,
-                                    VerificationStatus = s.VerificationStatus
-                                }).FirstOrDefaultAsync(f => f.Email.Equals(email));
+        public async Task<FullUserDTO> GetByEmail(string email)
+        {
+            User user = await _context.User.FirstOrDefaultAsync(f => f.Email.Equals(email));
+            return _mapper.Map<FullUserDTO>(user);
+        }
 
 
         /// <inheritdoc/>
         public async Task<FullUserDTO> GetById(Guid id)
-            => await _context.User.Select(s =>
-                                new FullUserDTO()
-                                {
-                                    Id = s.Id,
-                                    FullName = string.Format("{0} {1}", s.Name, s.LastName),
-                                    Email = s.Email,
-                                    Status = s.UserStatus,
-                                    VerificationStatus = s.VerificationStatus
-                                }).FirstOrDefaultAsync(f => f.Id.Equals(id));
+        {
+            User user = await _context.User.FirstOrDefaultAsync(f => f.Id.Equals(id));
+            return _mapper.Map<FullUserDTO>(user);
+        }
 
         #endregion
 
