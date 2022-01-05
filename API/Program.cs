@@ -1,3 +1,4 @@
+using API;
 using API.Config;
 using MediatR;
 using System.Reflection;
@@ -15,9 +16,9 @@ builder.Services.AddAutomapperServices();
 
 builder.Services.AddRepositoriesScopes();
 builder.Services.AddTrasients();
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
-builder.Services.AddJWTServices(Configuration);
+builder.Services.AddJWTServices(Configuration); var assembly = AppDomain.CurrentDomain.Load(nameof(Core));
+builder.Services.AddMediatR(AppDomain.CurrentDomain.Load(nameof(Core)));
 
 var app = builder.Build();
 

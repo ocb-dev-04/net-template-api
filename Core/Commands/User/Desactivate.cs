@@ -1,13 +1,15 @@
 ﻿using AutoMapper;
+using MediatR;
+
 using Core.Builders;
 using Core.DTOs;
 using Core.Helpers;
 using Core.Interfaces;
-using MediatR;
+using Core.Entities;
 
 namespace Core.Commands
 {
-    public static class ReactivateUser
+    public static class DesactivateUser
     {
         // Command
         public record Command(Guid id) : IRequest<bool>;
@@ -23,8 +25,8 @@ namespace Core.Commands
             public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
             {
                 FullUserDTO find = await _unitOfWork.UserQueriesRepository.GetById(request.id);
-                Entities.User savedData = _mapper.Map<Entities.User>(find);
-                Entities.User update = new UserStatusBuilder(savedData).Reactivate();
+                User savedData = _mapper.Map<User>(find);
+                User update = new UserStatusBuilder(savedData).Desactivate();
 
                 await _unitOfWork.UserCommandRepository.Update(update);
                 return await _unitOfWork.Commit();

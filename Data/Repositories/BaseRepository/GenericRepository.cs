@@ -15,13 +15,21 @@ namespace Data.Repositories
         private readonly DbSet<Entity> _table;
 
         #endregion
-        
+
         #region Ctor
 
-        public GenericRepository(ApplicationDbContext context, IMapper mapper):base(context, mapper)
+        public GenericRepository(ApplicationDbContext context, IMapper mapper) : base(context, mapper)
         {
             _table = context.Set<Entity>();
         }
+
+        #endregion
+
+        #region Read
+
+        /// <inheritdoc/>
+        public async Task<int> Count()
+            => await _table.CountAsync();
 
         #endregion
 
@@ -36,10 +44,10 @@ namespace Data.Repositories
         }
 
         /// <inheritdoc/>
-        public async Task Update(Guid id, Entity update)
+        public async Task Update(Entity update)
         {
-            Entity? finded = await _table.FindAsync(id);
-            if(finded == null) throw new ArgumentNullException(nameof(finded));
+            Entity finded = await _table.FindAsync(update.Id);
+            if (finded == null) throw new ArgumentNullException(nameof(finded));
 
             finded = _mapper.Map<Entity>(update);
 

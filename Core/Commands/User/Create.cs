@@ -4,10 +4,12 @@ using MediatR;
 using Core.DTOs;
 using Core.Helpers;
 using Core.Interfaces;
+using Core.Builders;
+using Core.Entities;
 
 namespace Core.Commands
 {
-    public static class CreateUser
+    public class CreateUser
     {
         // Command
         public record Command(CreateUserDTO model) : IRequest<bool>;
@@ -22,7 +24,12 @@ namespace Core.Commands
 
             public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
             {
-                Entities.User create = _mapper.Map<Entities.User>(request.model);
+                User create = new CreateBuilder()
+                    .SetName(request.model.Name)
+                    .SetLastName(request.model.LastName)
+                    .SetEmail(request.model.Email)
+                    .Build();
+                
                 await _unitOfWork.UserCommandRepository.Create(create);
                 return await _unitOfWork.Commit();
             }

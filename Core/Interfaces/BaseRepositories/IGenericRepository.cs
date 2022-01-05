@@ -11,6 +11,12 @@ namespace Core.Interfaces
         where Entity : BaseEntity
     {
         /// <summary>
+        /// Get total count
+        /// </summary>
+        /// <returns></returns>
+        Task<int> Count();
+
+        /// <summary>
         /// Add an entity
         /// </summary>
         /// <param name="create">Entity inselft</param>
@@ -23,7 +29,7 @@ namespace Core.Interfaces
         /// <param name="id">Current entity guid</param>
         /// <param name="update">Entity updated</param>
         /// <returns></returns>
-        Task Update(Guid id, Entity update);
+        Task Update(Entity update);
 
         /// <summary>
         /// Delete entity by guid
