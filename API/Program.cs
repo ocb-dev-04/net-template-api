@@ -17,7 +17,7 @@ builder.Services.AddAutomapperServices();
 builder.Services.AddRepositoriesScopes();
 builder.Services.AddTrasients();
 
-builder.Services.AddJWTServices(Configuration); var assembly = AppDomain.CurrentDomain.Load(nameof(Core));
+builder.Services.AddJWTServices(Configuration);
 builder.Services.AddMediatR(AppDomain.CurrentDomain.Load(nameof(Core)));
 
 var app = builder.Build();

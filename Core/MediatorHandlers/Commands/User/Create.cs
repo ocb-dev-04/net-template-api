@@ -12,17 +12,17 @@ namespace Core.MediatorHandlers.Commands
     public class CreateUser
     {
         // Command
-        public record Command(CreateUserDTO model) : IRequest<bool>;
+        public record CreateCommand(CreateUserDTO model) : IRequest<FullUserDTO>;
 
         // Handler
-        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<Command, bool>
+        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<CreateCommand, FullUserDTO>
         {
             public Handler(IUnitOfWork unit, IMapper mapper) : base(unit, mapper)
             {
 
             }
 
-            public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<FullUserDTO> Handle(CreateCommand request, CancellationToken cancellationToken)
             {
                 User create = new CreateBuilder()
                     .SetName(request.model.Name)
@@ -31,7 +31,8 @@ namespace Core.MediatorHandlers.Commands
                     .Build();
                 
                 await _unitOfWork.UserCommandRepository.Create(create);
-                return await _unitOfWork.Commit();
+                await _unitOfWork.Commit();
+                return await _unitOfWork.UserQueriesRepository.GetById(create.Id);
             }
         }
     }

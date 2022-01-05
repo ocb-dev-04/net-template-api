@@ -10,17 +10,17 @@ namespace Core.MediatorHandlers.Commands
     public static class DeleteUser
     {
         // Command
-        public record Command(Guid id) : IRequest<bool>;
+        public record DeleteCommand(Guid id) : IRequest<bool>;
 
         // Handler
-        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<Command, bool>
+        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<DeleteCommand, bool>
         {
             public Handler(IUnitOfWork unit, IMapper mapper) : base(unit, mapper)
             {
 
             }
 
-            public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<bool> Handle(DeleteCommand request, CancellationToken cancellationToken)
             {
                 FullUserDTO find = await _unitOfWork.UserQueriesRepository.GetById(request.id);
                 if (find == null) throw new ArgumentNullException(nameof(find));

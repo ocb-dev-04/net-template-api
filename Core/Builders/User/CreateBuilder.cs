@@ -38,6 +38,8 @@ namespace Core.Builders
         {
             // make foreign validations => initalDate > endDate for example
             UserData.Id = Guid.NewGuid();
+            UserData.ModifiedDate = DateTimeOffset.UtcNow;
+
             return UserData;
         }
     }

@@ -8,7 +8,7 @@ namespace Core.Entities
         /// Evaluated user foreign key
         /// </summary>
         [Required]
-        public User User { get; set; }
+        public Guid User { get; set; }
 
         /// <summary>
         /// Qualifier user foreign key

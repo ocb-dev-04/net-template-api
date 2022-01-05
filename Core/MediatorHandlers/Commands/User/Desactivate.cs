@@ -12,17 +12,17 @@ namespace Core.MediatorHandlers.Commands
     public static class DesactivateUser
     {
         // Command
-        public record Command(Guid id) : IRequest<bool>;
+        public record DesactivateCommand(Guid id) : IRequest<bool>;
 
         // Handler
-        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<Command, bool>
+        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<DesactivateCommand, bool>
         {
             public Handler(IUnitOfWork unit, IMapper mapper) : base(unit, mapper)
             {
 
             }
 
-            public async Task<bool> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<bool> Handle(DesactivateCommand request, CancellationToken cancellationToken)
             {
                 FullUserDTO find = await _unitOfWork.UserQueriesRepository.GetById(request.id);
                 User savedData = _mapper.Map<User>(find);

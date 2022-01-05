@@ -15,12 +15,11 @@ namespace Core.Builders
         }
 
         public UpdateBuilder SetName(string name)
-        {
-            Guard.Against.NullOrWhiteSpace(name, "{0} cant be null or white space", nameof(name));
+        {   
             UserData.Name = name;
             return this;
         }
-
+         
         public UpdateBuilder SetLastName(string lastname)
         {
             Guard.Against.NullOrWhiteSpace(lastname, "{0} cant be null or white space", nameof(lastname));
@@ -38,6 +37,7 @@ namespace Core.Builders
         public User Build()
         {
             // make foreign validations => initalDate > endDate for example
+            UserData.ModifiedDate = DateTime.UtcNow;
             return UserData;
         }
     }
