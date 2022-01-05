@@ -4,7 +4,7 @@ using Core.Entities;
 namespace Core.Interfaces
 {
     /// <summary>
-    /// 
+    /// <see cref="IUnitOfWork"/> interface
     /// </summary>
     public interface IUnitOfWork : IDisposable
     {
@@ -22,24 +22,26 @@ namespace Core.Interfaces
         /// <summary>
         /// User Command Repository. Write actions.
         /// </summary>
-        public IGenericRepository<User, UserDTO> UserCommandRepository { get; }
+        public IGenericRepository<User> UserCommandRepository { get; }
 
 
         /// <summary>
         /// DeviceToken Command Repository. Write actions.
         /// </summary>
-        public IGenericRepository<DeviceToken, DeviceTokenDTO> DeviceTokenCommandRepository { get; }
+        public IGenericRepository<DeviceToken> DeviceTokenCommandRepository { get; }
 
         /// <summary>
         ///  UserPhone Command Repository. Write actions.
         /// </summary>
-        public IGenericRepository<UserPhone, UserPhoneDTO> UserPhoneCommandRepository { get; }
+        public IGenericRepository<UserPhone> UserPhoneCommandRepository { get; }
 
         /// <summary>
         /// UserPhone Command Repository. Write actions.
         /// </summary>
-        public IGenericRepository<UserScore, UserScoreDTO> UserScoreCommandRepository { get; }
+        public IGenericRepository<UserScore> UserScoreCommandRepository { get; }
 
         #endregion
+
+        Task<bool> Commit();
     }
 }

@@ -4,7 +4,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TestsController : BaseController
+    public class TestsController : ControllerBase
     {
         [HttpGet]
         public IActionResult AllDone()

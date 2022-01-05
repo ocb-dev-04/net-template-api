@@ -1,25 +1,15 @@
-﻿using Core.Commands;
-using Core.Interfaces;
-using Core.Queries;
+﻿using System.Diagnostics;
+
+using Microsoft.EntityFrameworkCore;
+
 using Data.AppDbContext;
 using Data.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
+using Core.Interfaces;
 
 namespace API.Config
 {
     public static class ServicesExtensions
     {
-        /// <summary>
-        /// Method to inyect dependencies that will use in services methods
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddReadWriteScopes(this IServiceCollection services)
-        {
-            services.AddScoped<IUserQueries, UserQueries>();
-            services.AddScoped<IUserCommands, UserCommands>();
-        }
-
         /// <summary>
         /// Method to inyect dependencies that will use in reposioties methods
         /// </summary>
@@ -27,7 +17,8 @@ namespace API.Config
         public static void AddRepositoriesScopes(this IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
         /// <summary>

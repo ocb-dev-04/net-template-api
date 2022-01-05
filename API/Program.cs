@@ -1,5 +1,6 @@
-
 using API.Config;
+using MediatR;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,7 @@ builder.Services.AddAutomapperServices();
 
 builder.Services.AddRepositoriesScopes();
 builder.Services.AddTrasients();
-builder.Services.AddReadWriteScopes();
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 builder.Services.AddJWTServices(Configuration);
 

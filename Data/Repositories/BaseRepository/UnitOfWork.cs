@@ -19,10 +19,10 @@ namespace Data.Repositories
 
         #region Write actions props
 
-        private readonly IGenericRepository<User, UserDTO> _userCommandRepository;
-        private readonly IGenericRepository<DeviceToken, DeviceTokenDTO> _deviceTokenCommandRepository;
-        private readonly IGenericRepository<UserPhone, UserPhoneDTO> _userPhoneCommandRepository;
-        private readonly IGenericRepository<UserScore, UserScoreDTO> _userScoreCommandRepository;
+        private readonly IGenericRepository<User> _userCommandRepository;
+        private readonly IGenericRepository<DeviceToken> _deviceTokenCommandRepository;
+        private readonly IGenericRepository<UserPhone> _userPhoneCommandRepository;
+        private readonly IGenericRepository<UserScore> _userScoreCommandRepository;
 
         #endregion
         
@@ -52,24 +52,22 @@ namespace Data.Repositories
         #region Write actions repositories
 
         /// <inheritdoc/>
-        public IGenericRepository<User, UserDTO> UserCommandRepository
-            => _userCommandRepository ?? new GenericRepository<User, UserDTO>(_context, _mapper);
+        public IGenericRepository<User> UserCommandRepository
+            => _userCommandRepository ?? new GenericRepository<User>(_context, _mapper);
 
         /// <inheritdoc/>
-        public IGenericRepository<DeviceToken, DeviceTokenDTO> DeviceTokenCommandRepository
-            => _deviceTokenCommandRepository ?? new GenericRepository<DeviceToken, DeviceTokenDTO>(_context, _mapper);
+        public IGenericRepository<DeviceToken> DeviceTokenCommandRepository
+            => _deviceTokenCommandRepository ?? new GenericRepository<DeviceToken>(_context, _mapper);
 
         /// <inheritdoc/>
-        public IGenericRepository<UserPhone, UserPhoneDTO> UserPhoneCommandRepository
-            => _userPhoneCommandRepository ?? new GenericRepository<UserPhone, UserPhoneDTO>(_context, _mapper);
+        public IGenericRepository<UserPhone> UserPhoneCommandRepository
+            => _userPhoneCommandRepository ?? new GenericRepository<UserPhone>(_context, _mapper);
 
         /// <inheritdoc/>
-        public IGenericRepository<UserScore, UserScoreDTO> UserScoreCommandRepository
-            => _userScoreCommandRepository ?? new GenericRepository<UserScore, UserScoreDTO>(_context, _mapper);
+        public IGenericRepository<UserScore> UserScoreCommandRepository
+            => _userScoreCommandRepository ?? new GenericRepository<UserScore>(_context, _mapper);
 
         #endregion
-
-        #region Interfaces methods inselft
 
         /// <inheritdoc/>
         public async Task<bool> Commit()
@@ -77,7 +75,5 @@ namespace Data.Repositories
             int changes = await _context.SaveChangesAsync();
             return changes > 0;
         }
-
-        #endregion
     }
 }

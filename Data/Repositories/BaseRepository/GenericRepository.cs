@@ -5,14 +5,10 @@ using AutoMapper;
 using Data.AppDbContext;
 using Core.Interfaces;
 using Core.Entities;
-using Core.DTOs;
 
 namespace Data.Repositories
 {
-    public sealed class GenericRepository<Entity, DTO> 
-        : BaseRepository, IGenericRepository<Entity, DTO> 
-            where Entity : BaseEntity 
-            where DTO : BaseDTO
+    public sealed class GenericRepository<Entity> : BaseRepository, IGenericRepository<Entity> where Entity : BaseEntity
     {
         #region Properties
 
@@ -32,7 +28,7 @@ namespace Data.Repositories
         #region Write Actions
 
         /// <inheritdoc/>
-        public async Task Create(DTO create)
+        public async Task Create(Entity create)
         {
             Entity mapped = _mapper.Map<Entity>(create);
             await _table.AddAsync(mapped);
@@ -40,7 +36,7 @@ namespace Data.Repositories
         }
 
         /// <inheritdoc/>
-        public async Task Update(Guid id, DTO update)
+        public async Task Update(Guid id, Entity update)
         {
             Entity? finded = await _table.FindAsync(id);
             if(finded == null) throw new ArgumentNullException(nameof(finded));

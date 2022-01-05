@@ -1,10 +1,13 @@
 ﻿namespace Core.Enums
 {
+    /// <summary>
+    /// User status
+    /// </summary>
     public enum UserStatus
     {
-        Verified = 0,
-        InProcess,
-        Unverified,
-        Banned
+        Active =0,
+        Inactive,
+        Paused,
+        Deleted
     }
 }

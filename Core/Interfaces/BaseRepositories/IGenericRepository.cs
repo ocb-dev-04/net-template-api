@@ -1,31 +1,29 @@
-﻿using Core.DTOs;
-using Core.Entities;
+﻿using Core.Entities;
 
 namespace Core.Interfaces
 {
     /// <summary>
-    /// 
+    /// <see cref="IGenericRepository"/> interface
     /// </summary>
     /// <typeparam name="Entity"></typeparam>
     /// <typeparam name="DTO"></typeparam>
-    public interface IGenericRepository<Entity, DTO>
+    public interface IGenericRepository<Entity>
         where Entity : BaseEntity
-        where DTO : BaseDTO
     {
         /// <summary>
         /// Add an entity
         /// </summary>
-        /// <param name="create">DTO ready to map to entity</param>
+        /// <param name="create">Entity inselft</param>
         /// <returns></returns>
-        Task Create(DTO create);
+        Task Create(Entity create);
 
         /// <summary>
         /// Update entity
         /// </summary>
         /// <param name="id">Current entity guid</param>
-        /// <param name="update">DTO with changes ready to map to entity</param>
+        /// <param name="update">Entity updated</param>
         /// <returns></returns>
-        Task Update(Guid id, DTO update);
+        Task Update(Guid id, Entity update);
 
         /// <summary>
         /// Delete entity by guid
