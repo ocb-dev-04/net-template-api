@@ -5,11 +5,17 @@ using Microsoft.EntityFrameworkCore;
 using Data.AppDbContext;
 using Data.Repositories;
 using Core.Interfaces;
+using AutoFixture;
+using Core.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Config
 {
     public static class ServicesExtensions
     {
+        private const string DevString = "DevString";
+        private const string ProdString = "ProdString";
+
         /// <summary>
         /// Method to inyect dependencies that will use in reposioties methods
         /// </summary>
@@ -35,14 +41,46 @@ namespace API.Config
         /// </summary>
         /// <param name="services"></param>
         /// <param name="configuration"></param>
-        public static void AddDatabaseServices(this IServiceCollection services, IConfiguration configuration)
+        public static void AddDatabaseServices(this IServiceCollection services, IConfiguration Configuration)
         {
             services.AddDbContext<ApplicationDbContext>(
                 o =>
                 {
-                    o.UseInMemoryDatabase(nameof(ApplicationDbContext))
-                        .LogTo((msg) => Debug.WriteLine(msg));
-                });
+#if DEBUG
+                    o.UseSqlServer(
+                        Configuration.GetConnectionString(DevString),
+                        providerOptions => { 
+                            providerOptions.EnableRetryOnFailure();
+                            providerOptions.CommandTimeout(20);
+                        })
+                        .LogTo((msg) => Debug.WriteLine(msg))
+                        .EnableDetailedErrors(true)
+                        .EnableSensitiveDataLogging(true);
+#else
+                    o.UseSqlServer(
+                        Configuration.GetConnectionString(ProdString),
+                        providerOptions => providerOptions.EnableRetryOnFailure());
+#endif
+                }
+            );
+        }
+
+        public static void AddFakeData(this ApplicationDbContext context)
+        {
+            context.Database.EnsureCreated();
+            context.Seed();
+        }
+
+        public static void Seed(this ApplicationDbContext context)
+        {
+            if (!context.User.Any())
+            {
+                Fixture fixture = new Fixture();
+                fixture.Customize<User>(product => product.Without(p => p.Id));
+                List<User> products = fixture.CreateMany<User>(100).ToList();
+                context.AddRange(products);
+                context.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -50,9 +88,11 @@ namespace API.Config
         /// </summary>
         /// <param name="services"></param>
         /// <param name="configuration"></param>
-        public static void AddJWTServices(this IServiceCollection services, IConfiguration configuration)
+        public static void AddJWTServices(this IServiceCollection services, IConfiguration Configuration)
         {
-
+            //services.AddIdentity<AuthUser, IdentityRole>()
+            //            .AddEntityFrameworkStores<ApplicationDbContext>()
+            //            .AddDefaultTokenProviders();
         }
         
         /// <summary>

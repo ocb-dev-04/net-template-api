@@ -15,7 +15,7 @@ namespace Core.MediatorHandlers.Commands
         public record UpdateCommand(UpdateUserDTO model) : IRequest<FullUserDTO>;
 
         // Handler
-        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<UpdateCommand, FullUserDTO>
+        public class Handler : UnitOfWorkBase, IRequestHandler<UpdateCommand, FullUserDTO>
         {
             public Handler(IUnitOfWork unit, IMapper mapper) : base(unit, mapper)
             {

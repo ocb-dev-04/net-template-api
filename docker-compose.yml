@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    container_name: net_template_api_db
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+    
+volumes:
+  sqlserver:

@@ -3,7 +3,7 @@ using Core.Interfaces;
 
 namespace Core.Helpers
 {
-    public class UnitOfWorkBaseRepository
+    public class UnitOfWorkBase
     {
         #region Properties
 
@@ -14,7 +14,7 @@ namespace Core.Helpers
 
         #region Ctor
 
-        public UnitOfWorkBaseRepository(IUnitOfWork unitOfWork, IMapper mapper)
+        public UnitOfWorkBase(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;   
             _mapper = mapper;

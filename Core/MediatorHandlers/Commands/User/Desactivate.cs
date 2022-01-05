@@ -15,7 +15,7 @@ namespace Core.MediatorHandlers.Commands
         public record DesactivateCommand(Guid id) : IRequest<bool>;
 
         // Handler
-        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<DesactivateCommand, bool>
+        public class Handler : UnitOfWorkBase, IRequestHandler<DesactivateCommand, bool>
         {
             public Handler(IUnitOfWork unit, IMapper mapper) : base(unit, mapper)
             {

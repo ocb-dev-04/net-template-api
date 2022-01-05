@@ -13,7 +13,7 @@ namespace Core.MediatorHandlers.Commands
         public record DeleteCommand(Guid id) : IRequest<bool>;
 
         // Handler
-        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<DeleteCommand, bool>
+        public class Handler : UnitOfWorkBase, IRequestHandler<DeleteCommand, bool>
         {
             public Handler(IUnitOfWork unit, IMapper mapper) : base(unit, mapper)
             {

@@ -15,7 +15,7 @@ namespace Core.MediatorHandlers.Commands
         public record CreateCommand(CreateUserDTO model) : IRequest<FullUserDTO>;
 
         // Handler
-        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<CreateCommand, FullUserDTO>
+        public class Handler : UnitOfWorkBase, IRequestHandler<CreateCommand, FullUserDTO>
         {
             public Handler(IUnitOfWork unit, IMapper mapper) : base(unit, mapper)
             {

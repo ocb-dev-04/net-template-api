@@ -25,7 +25,6 @@ namespace Data.AppDbContext
         /// </summary>
         public DbSet<User> User { get; set; }
 
-
         #endregion
 
         #region OnModelCreating

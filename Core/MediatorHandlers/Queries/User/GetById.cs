@@ -13,7 +13,7 @@ namespace Core.MediatorHandlers.Queries
         public record GetByIdCommand(Guid id) : IRequest<FullUserDTO>;
 
         // Handler
-        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<GetByIdCommand, FullUserDTO>
+        public class Handler : UnitOfWorkBase, IRequestHandler<GetByIdCommand, FullUserDTO>
         {
             public Handler(IUnitOfWork unit, IMapper mapper) : base(unit, mapper)
             {

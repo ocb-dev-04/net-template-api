@@ -15,7 +15,7 @@ namespace Core.MediatorHandlers.Commands
         public record PauseCommand(Guid id) : IRequest<bool>;
 
         // Handler
-        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<PauseCommand, bool>
+        public class Handler : UnitOfWorkBase, IRequestHandler<PauseCommand, bool>
         {
             public Handler(IUnitOfWork unit, IMapper mapper) : base(unit, mapper)
             {

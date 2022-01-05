@@ -14,7 +14,7 @@ namespace Core.MediatorHandlers.Queries.User
         public record GetCollectionsCommand(BasePagination model) : IRequest<IEnumerable<FlatUserDTO>>;
 
         // Handler
-        public class Handler : UnitOfWorkBaseRepository, IRequestHandler<GetCollectionsCommand, IEnumerable<FlatUserDTO>>
+        public class Handler : UnitOfWorkBase, IRequestHandler<GetCollectionsCommand, IEnumerable<FlatUserDTO>>
         {
             public Handler(IUnitOfWork unit, IMapper mapper) : base(unit, mapper)
             {
