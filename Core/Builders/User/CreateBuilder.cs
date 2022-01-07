@@ -6,7 +6,7 @@ namespace Core.Builders
 {
     public class CreateBuilder
     {
-        public User UserData { get; set; }
+        private User UserData { get; }
 
         public CreateBuilder()
         {
@@ -37,9 +37,7 @@ namespace Core.Builders
         public User Build()
         {
             // make foreign validations => initalDate > endDate for example
-            UserData.Id = Guid.NewGuid();
             UserData.ModifiedDate = DateTimeOffset.UtcNow;
-
             return UserData;
         }
     }
