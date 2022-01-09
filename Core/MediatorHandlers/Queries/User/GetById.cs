@@ -2,6 +2,7 @@
 using AutoMapper;
 
 using Core.DTOs;
+using Core.Entities;
 using Core.Helpers;
 using Core.Interfaces;
 
@@ -21,7 +22,10 @@ namespace Core.MediatorHandlers.Queries
             }
 
             public async Task<FullUserDTO> Handle(GetByIdCommand request, CancellationToken cancellationToken)
-                => await _unitOfWork.UserQueriesRepository.GetById(request.id);
+            {
+                User finded = await _unitOfWork.UserQueriesRepository.GetById(request.id);
+                return _mapper.Map<FullUserDTO>(finded);
+            }
         }
     }
 }

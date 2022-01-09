@@ -4,6 +4,7 @@ using MediatR;
 using Core.DTOs;
 using Core.Helpers;
 using Core.Interfaces;
+using Core.Entities;
 
 namespace Core.MediatorHandlers.Commands
 {
@@ -22,7 +23,7 @@ namespace Core.MediatorHandlers.Commands
 
             public async Task<bool> Handle(DeleteCommand request, CancellationToken cancellationToken)
             {
-                FullUserDTO find = await _unitOfWork.UserQueriesRepository.GetById(request.id);
+                User find = await _unitOfWork.UserQueriesRepository.GetById(request.id);
                 if (find == null) throw new ArgumentNullException(nameof(find));
 
                 await _unitOfWork.UserCommandRepository.Delete(find.Id);

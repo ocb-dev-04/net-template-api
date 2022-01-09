@@ -23,9 +23,8 @@ namespace Core.MediatorHandlers.Commands
 
             public async Task<bool> Handle(ActivateCommand request, CancellationToken cancellationToken)
             {
-                FullUserDTO find = await _unitOfWork.UserQueriesRepository.GetById(request.id);
-                User savedData = _mapper.Map<User>(find);
-                User update = new UserStatusBuilder(savedData).Reactivate();
+                User find = await _unitOfWork.UserQueriesRepository.GetById(request.id);
+                User update = new UserStatusBuilder(find).Reactivate();
 
                 await _unitOfWork.UserCommandRepository.Update(update);
                 return await _unitOfWork.Commit();

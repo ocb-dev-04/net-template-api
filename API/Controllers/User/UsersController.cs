@@ -1,6 +1,5 @@
 ﻿using Core.MediatorHandlers.Commands;
 using Core.MediatorHandlers.Queries;
-using Core.MediatorHandlers.Queries.User;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

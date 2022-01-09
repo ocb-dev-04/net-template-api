@@ -55,8 +55,8 @@ namespace Data.Repositories
         {
             Entity finded = await _table.FindAsync(id);
             if (finded == null) throw new ArgumentNullException(nameof(finded));
-
-            _table.Remove(finded);
+            finded.Deleted = true;
+            _context.Entry(finded).CurrentValues.SetValues(finded);
         }
 
         #endregion

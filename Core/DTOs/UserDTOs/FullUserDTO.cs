@@ -22,7 +22,7 @@ namespace Core.DTOs
         /// <summary>
         /// User status
         /// </summary>
-        public UserStatus Status { get; set; }
+        public UserStatus UserStatus { get; set; }
 
         /// <summary>
         /// User verification status

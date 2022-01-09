@@ -24,9 +24,8 @@ namespace Core.MediatorHandlers.Commands
 
             public async Task<FullUserDTO> Handle(UpdateCommand request, CancellationToken cancellationToken)
             {
-                FullUserDTO find = await _unitOfWork.UserQueriesRepository.GetById(request.model.Id);
-                User savedData = _mapper.Map<User>(find);
-                User update = new UpdateBuilder(savedData)
+                User find = await _unitOfWork.UserQueriesRepository.GetById(request.model.Id);
+                User update = new UpdateBuilder(find)
                     .SetName(request.model.Name)
                     .SetLastName(request.model.LastName)
                     .SetEmail(request.model.Email)
@@ -34,7 +33,9 @@ namespace Core.MediatorHandlers.Commands
 
                 await _unitOfWork.UserCommandRepository.Update(update);
                 await _unitOfWork.Commit();
-                return await _unitOfWork.UserQueriesRepository.GetById(update.Id);
+
+                User updated =  await _unitOfWork.UserQueriesRepository.GetById(update.Id);
+                return _mapper.Map<FullUserDTO>(updated);
             }
         }
     }

@@ -10,6 +10,7 @@ namespace Core.Builders
 
         public UserStatusBuilder(User updateData)
         {
+            if(updateData == null) throw new ArgumentNullException(nameof(updateData));
             UserData = updateData;
         }
 

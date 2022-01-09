@@ -1,4 +1,4 @@
-﻿using Core.DTOs;
+﻿using Core.Entities;
 using Core.Validations.QueryParams;
 
 namespace Core.Interfaces
@@ -15,14 +15,14 @@ namespace Core.Interfaces
         /// </summary>
         /// <param name="email">The user email to search</param>
         /// <returns></returns>
-        Task<FullUserDTO> GetByEmail(string email);
+        Task<User> GetByEmail(string email);
 
         /// <summary>
         /// Get user by id
         /// </summary>
         /// <param name="id">Id of user</param>
         /// <returns></returns>
-        Task<FullUserDTO> GetById(Guid id);
+        Task<User> GetById(Guid id);
 
         #endregion
 
@@ -33,14 +33,14 @@ namespace Core.Interfaces
         /// </summary>
         /// <param name="pageNumber">Number of page</param>
         /// <returns></returns>
-        Task<IEnumerable<FlatUserDTO>> GetAll(BasePagination pagination);
+        Task<IEnumerable<User>> GetAll(BasePagination pagination);
 
         /// <summary>
         /// Get users by name
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        Task<IEnumerable<FlatUserDTO>> GetAllByName(GetByName byName);
+        Task<IEnumerable<User>> GetAllByName(GetByName byName);
 
         #endregion
     }

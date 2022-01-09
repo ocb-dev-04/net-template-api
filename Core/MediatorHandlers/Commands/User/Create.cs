@@ -32,7 +32,8 @@ namespace Core.MediatorHandlers.Commands
                 
                 await _unitOfWork.UserCommandRepository.Create(create);
                 await _unitOfWork.Commit();
-                return await _unitOfWork.UserQueriesRepository.GetById(create.Id);
+                User created = await _unitOfWork.UserQueriesRepository.GetById(create.Id);
+                return _mapper.Map<FullUserDTO>(created);
             }
         }
     }
